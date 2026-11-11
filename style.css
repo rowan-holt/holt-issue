@@ -62,7 +62,7 @@ a{color:inherit;text-decoration:none}
 .empty{color:var(--gray);padding:30px 0}
 .notes-act{margin:20px 0 0;display:flex;gap:10px}
 .notes-act button{font:inherit;font-size:14px;border:1px solid var(--ink);background:none;padding:5px 14px;cursor:pointer}
-.doc h1{font-size:28px;font-weight:600;margin:40px 0 20px}.doc h2{font-size:19px;margin:32px 0 8px}
+.doc h1{font-size:28px;font-weight:600;margin:40px 0 20px}.doc h2{font-size:19px;margin:32px 0 8px}.doc ul{padding-left:20px}.doc li{margin:8px 0}.doc a{text-decoration:underline}
 /* 꼬리말 — HOLT ENGLISH와 같은 검은 띠(1111 사용자) */
 footer.site{background:#000;color:#cfcfcf;margin-top:80px;padding:40px 56px 48px;font-size:13px;line-height:1.8;display:grid;grid-template-columns:auto 1fr auto;gap:20px 48px;align-items:start}
 footer.site .logo-s{font-family:"Jost",sans-serif;font-weight:600;color:#fff;font-size:17px;letter-spacing:.04em}
