@@ -72,3 +72,4 @@ footer.site .c{text-align:right;align-self:end}
 @media(max-width:700px){footer.site{grid-template-columns:1fr;padding:32px 20px 40px}footer.site .c{text-align:left}.top{grid-template-columns:auto 1fr;padding:6px 16px}.top>span{display:none}.top .logo{align-items:center;justify-self:start}.top .right{flex-direction:column;gap:0;align-items:flex-end;font-size:13px;line-height:1.6}.logo .tag{font-size:.36em;letter-spacing:.12em}
 .menu{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.menu::-webkit-scrollbar{display:none}.menu a{padding:11px 16px;font-size:14px}
 .head{padding:28px 16px 12px}.wrap{padding:0 16px 30px}.issue .sum{padding:14px 16px}.list a{flex-direction:column;gap:2px}}
+html.in-app header.top .right{visibility:hidden}
