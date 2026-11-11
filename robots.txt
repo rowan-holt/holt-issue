@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://issue.holtnews.com/sitemap.xml
