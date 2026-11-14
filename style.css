@@ -60,6 +60,21 @@ a{color:inherit;text-decoration:none}
 .terms a{border-right:1px solid #ddd;border-bottom:1px solid #ddd;padding:12px 14px;font-size:15px}
 .terms a:hover{background:var(--soft)}
 .empty{color:var(--gray);padding:30px 0}
+/* 1115 사용자: 분야 대신 날짜 — 날짜 쪽은 이슈 제목 목록, 누르면 이슈 하나씩 */
+.toc{list-style:none;margin:8px 0 0;padding:0}
+.toc li{border-bottom:1px solid #ddd}
+.toc a{display:grid;grid-template-columns:40px 1fr auto;gap:4px 12px;align-items:baseline;padding:20px 4px}
+.toc .n{font-family:"Jost",sans-serif;font-size:22px;font-weight:500;color:var(--gray);grid-row:span 2}
+.toc b{font-size:clamp(18px,1.7vw,21px);font-weight:600;line-height:1.45}
+.toc a:hover b{text-decoration:underline;text-underline-offset:4px}
+.toc .s{grid-column:2;color:var(--gray);font-size:14px;line-height:1.6}
+.toc .c{grid-column:3;grid-row:1;font-size:13px;color:var(--gray);white-space:nowrap}
+.toc .c.all{color:var(--ok);font-weight:600}
+.back{display:inline-block;margin:24px 0 0;font-size:14px;color:var(--ink2);border-bottom:1px solid var(--ink2);line-height:1.4}
+.issue.one{padding-top:24px}
+.pn a{font-size:15px}
+.pn a span{display:block;font-size:13px;color:var(--gray)}
+.pn .nx{text-align:right;margin-left:auto}
 .notes-act{margin:20px 0 0;display:flex;gap:10px}
 .notes-act button{font:inherit;font-size:14px;border:1px solid var(--ink);background:none;padding:5px 14px;cursor:pointer}
 .doc h1{font-size:28px;font-weight:600;margin:40px 0 20px}.doc h2{font-size:19px;margin:32px 0 8px}.doc ul{padding-left:20px}.doc li{margin:8px 0}.doc a{text-decoration:underline}
@@ -71,7 +86,7 @@ footer.site nav{display:flex;gap:10px;flex-wrap:wrap;color:#fff}footer.site nav 
 footer.site .c{text-align:right;align-self:end}footer.site .c .install{margin:0 0 12px}/* 1112 사용자: 앱으로 설치는 꼬리말 오른쪽(© 위)으로 */
 @media(max-width:700px){footer.site{grid-template-columns:1fr;padding:32px 20px 40px}footer.site .c{text-align:left}.top{grid-template-columns:auto 1fr;padding:6px 16px}.top>span{display:none}.top .logo{align-items:center;justify-self:start;gap:1px}.top .right{flex-direction:column;gap:0;align-items:flex-end;font-size:13px;line-height:1.6}.logo .tag{font-size:.36em;letter-spacing:.12em}
 .menu{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.menu::-webkit-scrollbar{display:none}.menu a{padding:11px 16px;font-size:14px}.menu .end{position:sticky;right:0;background:var(--bg)}.menu .end.on{background:var(--ink)}
-.head{padding:28px 16px 12px}.wrap{padding:0 16px 30px}.issue .sum{padding:14px 16px}.list a{flex-direction:column;gap:2px}}
+.head{padding:28px 16px 12px}.wrap{padding:0 16px 30px}.issue .sum{padding:14px 16px}.list a{flex-direction:column;gap:2px}.toc a{grid-template-columns:28px 1fr;padding:18px 0}.toc .n{font-size:19px}.toc .c{grid-column:2;grid-row:auto}}
 .psa{position:relative;margin:0;color:#fff;overflow:hidden}
 .psa a{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;padding:20px 24px;color:#fff!important;text-decoration:none;background:none!important;border:0!important}
 .psa .psa-l{position:absolute;top:0;right:0;margin:0;padding:2px 6px;font-size:9px;line-height:1.4;letter-spacing:.04em;font-weight:400;color:#fff;background:rgba(0,0,0,.35);pointer-events:none}

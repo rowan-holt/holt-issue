@@ -2,8 +2,11 @@
 var K='holt_issue_v1';
 function get(){try{return JSON.parse(localStorage.getItem(K)||'{}')}catch(e){return {}}}
 function put(o){try{localStorage.setItem(K,JSON.stringify(o))}catch(e){}}
+var KD='holt_issue_done_v1';
+function getd(){try{return JSON.parse(localStorage.getItem(KD)||'{}')}catch(e){return {}}}
+function putd(o){try{localStorage.setItem(KD,JSON.stringify(o))}catch(e){}}
 function ev(n,p){try{if(window.gtag)gtag('event',n,p||{})}catch(e){}}
-function score(){var s=document.querySelector('.score');if(!s)return;var all=document.querySelectorAll('.q'),d=0,ok=0;
+function score(){var s=document.querySelector('.score');if(!s)return;var all=document.querySelectorAll('.q'),d=0,ok=0;if(!all.length)return;
 for(var i=0;i<all.length;i++){if(all[i].classList.contains('done')){d++;if(all[i].classList.contains('right'))ok++}}
 s.textContent=d?(all.length+'문제 중 '+d+'문제 풀이, '+ok+'문제 정답'):(all.length+'문제');}
 function bind(q){var bs=q.querySelectorAll('.ch button'),ans=+q.getAttribute('data-ans'),id=q.getAttribute('data-id');
@@ -13,9 +16,13 @@ bs[ans].classList.add('ok');if(!right)b.classList.add('no');
 var a=q.querySelector('.ex .ans');if(a){a.classList.add(right?'ok':'no');a.textContent=(right?'정답이에요. ':'틀렸어요. ')+a.getAttribute('data-t')}
 bs[ans].insertAdjacentHTML('beforeend','<span class="vh"> (정답)</span>');if(!right)b.insertAdjacentHTML('beforeend','<span class="vh"> (고른 답, 오답)</span>');for(var j=0;j<bs.length;j++)bs[j].setAttribute('aria-disabled','true');if(window.a11ySay)a11ySay((right?'정답이에요. ':'틀렸어요. ')+(a?a.getAttribute('data-t'):'')+'. 해설이 펼쳐졌어요.');
 var d=q.querySelector('.ex');if(d)d.open=true;
-var s=get();if(right){if(s[id])delete s[id]}else{s[id]={c:i,t:Date.now()}}put(s);
+var dd=getd();dd[id]=1;putd(dd);var s=get();if(right){if(s[id])delete s[id]}else{s[id]={c:i,t:Date.now()}}put(s);
 ev('quiz_answer',{qid:id,correct:right?1:0});score();});})(bs[i],i);}
 var qs=document.querySelectorAll('.q');for(var i=0;i<qs.length;i++)bind(qs[i]);score();
+/* 이슈 제목 목록 — 이 기기에서 푼 문제 수 */
+var tc=document.querySelectorAll('.toc [data-q]'),dn=getd();for(i=0;i<tc.length;i++){var ids=tc[i].getAttribute('data-q').split(' '),k=0;
+for(var j=0;j<ids.length;j++)if(dn[ids[j]])k++;var c=tc[i].querySelector('.c');if(!c||!k)continue;
+if(k===ids.length){c.textContent='✓ 다 풀었어요';c.classList.add('all')}else c.textContent=ids.length+'문제 중 '+k+'문제 풀이'}
 var src=document.querySelectorAll('.ex .src');for(i=0;i<src.length;i++)src[i].addEventListener('click',function(){ev('to_news',{url:this.href})});
 /* 오답 노트 — 같은 사이트 q.json에서 틀린 문제만 다시 그림 (textContent만 씀) */
 var box=document.getElementById('notes');if(!box)return;
@@ -27,7 +34,7 @@ var by={};all.forEach(function(q){by[q.id]=q});
 ids.sort(function(a,b){return s[b].t-s[a].t});
 ids.forEach(function(id,n){var q=by[id];if(!q)return;
 var el=document.createElement('article');el.className='q';el.setAttribute('data-id',id);el.setAttribute('data-ans',q.answer);
-var m=document.createElement('p');m.className='meta';m.textContent=q.dl+' · '+q.fl+' · '+q.kind;el.appendChild(m);
+var m=document.createElement('p');m.className='meta';m.textContent=q.dl+' · '+q.kind;el.appendChild(m);
 var h=document.createElement('h2');h.textContent='Q'+(n+1)+'. '+q.q;el.appendChild(h);
 var ol=document.createElement('ol');ol.className='ch';
 q.choices.forEach(function(c,i){var li=document.createElement('li'),b=document.createElement('button');b.type='button';
@@ -37,6 +44,7 @@ var d=document.createElement('details');d.className='ex';var su=document.createE
 var a=document.createElement('p');a.className='ans';var t='정답 '+'①②③④'.charAt(q.answer)+' '+q.choices[q.answer];a.setAttribute('data-t',t);a.textContent=t;d.appendChild(a);
 var w=document.createElement('p');w.textContent=q.why;d.appendChild(w);
 var l=document.createElement('a');l.className='src';l.href=q.url;l.target='_blank';l.rel='noopener';l.textContent='기사 자세히 보기: '+q.st+' ↗';d.appendChild(l);
+if(q.ip){var ip=document.createElement('a');ip.className='src';ip.style.marginLeft='14px';ip.href=q.ip;ip.textContent='이슈 정리 다시 보기';d.appendChild(ip)}
 el.appendChild(d);box.appendChild(el);bind(el);});
 var sc=document.querySelector('.score');if(sc)sc.textContent=ids.length+'문제';
 });
