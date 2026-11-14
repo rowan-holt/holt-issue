@@ -82,8 +82,9 @@ footer.site .install{display:inline-block;margin-top:14px;color:#fff;border:1px 
 footer.site nav a,footer.foot nav a,header.top .right a{display:inline-block;padding-block:2px}
 main:focus{outline:none}
 :where(a,button,input,select,textarea,summary,label,[tabindex]):focus-visible{outline:2px solid #111!important;outline-offset:2px!important;box-shadow:0 0 0 4px #fff!important}
+a:has(> .a11y-nw),.a11y-memo{position:relative}
 .a11y-live{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-.a11y-pause{position:absolute;left:-9999px}
-.a11y-pause:focus{position:static;left:auto;display:inline-block;margin:6px 0;font:inherit;font-size:13px;padding:4px 10px;border:1px solid #111;background:#fff;color:#111}
+.a11y-pause{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;padding:0;border:0}
+.a11y-pause:focus{position:static;width:auto;height:auto;overflow:visible;clip-path:none;display:inline-block;margin:6px 0;font:inherit;font-size:13px;padding:4px 10px;border:1px solid #111;background:#fff;color:#111}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 @media (forced-colors:active){.skip:focus{outline:3px solid CanvasText}}
