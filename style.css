@@ -1,5 +1,5 @@
 
-:root{--bg:#fff;--ink:#111;--ink2:#444;--gray:#8a8a8a;--line:#111;--soft:#f3f3f1;--ok:#1f7a3f;--no:#c0392b;
+:root{--bg:#fff;--ink:#111;--ink2:#444;--gray:#6b6b6b;/* 1114 접근성: 회색 글씨 대비 4.5:1 이상 */--line:#111;--soft:#f3f3f1;--ok:#1f7a3f;--no:#c0392b;
 --sans:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -38,7 +38,7 @@ a{color:inherit;text-decoration:none}
 .q.done .ch button{cursor:default}
 .q.done .ch button.ok{border-color:var(--ok);background:#eef7f0;color:var(--ok);font-weight:600}
 .q.done .ch button.no{border-color:var(--no);background:#fbeeec;color:var(--no);text-decoration:line-through}
-.q.done .ch button:not(.ok):not(.no){color:#999;border-color:#e3e3e3}
+.q.done .ch button:not(.ok):not(.no){color:#767676;border-color:#e3e3e3}
 .ex{margin-top:16px}
 .ex summary{cursor:pointer;font-size:14px;color:var(--ink2);list-style:none;display:inline-block;border-bottom:1px solid var(--ink2);line-height:1.4}
 .ex summary::-webkit-details-marker{display:none}
@@ -74,3 +74,16 @@ footer.site .c{text-align:right;align-self:end}footer.site .c .install{margin:0 
 .head{padding:28px 16px 12px}.wrap{padding:0 16px 30px}.issue .sum{padding:14px 16px}.list a{flex-direction:column;gap:2px}}
 html.in-app header.top .right{visibility:hidden}html.in-app .install{display:none!important}html.in-app .foot .brand,html.in-app footer.site .brand{display:none!important}html.in-app .foot,html.in-app footer.site{margin-top:40px!important;padding:20px 20px 22px!important;gap:6px 24px!important;line-height:1.6!important}html.in-app .foot nav+nav{margin-top:2px!important}
 footer.site .install{display:inline-block;margin-top:14px;color:#fff;border:1px solid #fff;padding:6px 16px;font-size:13px;line-height:1.4;text-decoration:none}footer.site .install:hover{background:#fff;color:#000}html.in-app footer.site .install{display:none}@media (display-mode: standalone){footer.site .install{display:none}}
+
+/* ===== 접근성 공통 (tools/a11y.py, 1114) ===== */
+.vh,.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
+.skip{position:absolute;left:8px;top:-200px;z-index:10000;background:#111;color:#fff!important;padding:12px 18px;font-size:16px;font-weight:700;text-decoration:none!important;border-radius:4px}
+.skip:focus{top:8px;outline:3px solid #ffbf47;outline-offset:0}
+footer.site nav a,footer.foot nav a,header.top .right a{display:inline-block;padding-block:2px}
+main:focus{outline:none}
+:where(a,button,input,select,textarea,summary,label,[tabindex]):focus-visible{outline:2px solid #111!important;outline-offset:2px!important;box-shadow:0 0 0 4px #fff!important}
+.a11y-live{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.a11y-pause{position:absolute;left:-9999px}
+.a11y-pause:focus{position:static;left:auto;display:inline-block;margin:6px 0;font:inherit;font-size:13px;padding:4px 10px;border:1px solid #111;background:#fff;color:#111}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+@media (forced-colors:active){.skip:focus{outline:3px solid CanvasText}}

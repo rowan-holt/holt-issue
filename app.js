@@ -11,6 +11,7 @@ for(var i=0;i<bs.length;i++)(function(b,i){b.addEventListener('click',function()
 if(q.classList.contains('done'))return;q.classList.add('done');var right=(i===ans);q.classList.add(right?'right':'wrong');
 bs[ans].classList.add('ok');if(!right)b.classList.add('no');
 var a=q.querySelector('.ex .ans');if(a){a.classList.add(right?'ok':'no');a.textContent=(right?'정답이에요. ':'틀렸어요. ')+a.getAttribute('data-t')}
+bs[ans].insertAdjacentHTML('beforeend','<span class="vh"> (정답)</span>');if(!right)b.insertAdjacentHTML('beforeend','<span class="vh"> (고른 답, 오답)</span>');for(var j=0;j<bs.length;j++)bs[j].setAttribute('aria-disabled','true');if(window.a11ySay)a11ySay((right?'정답이에요. ':'틀렸어요. ')+(a?a.getAttribute('data-t'):'')+'. 해설이 펼쳐졌어요.');
 var d=q.querySelector('.ex');if(d)d.open=true;
 var s=get();if(right){if(s[id])delete s[id]}else{s[id]={c:i,t:Date.now()}}put(s);
 ev('quiz_answer',{qid:id,correct:right?1:0});score();});})(bs[i],i);}
