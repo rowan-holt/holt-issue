@@ -6,6 +6,7 @@ var KD='holt_issue_done_v1';
 function getd(){try{return JSON.parse(localStorage.getItem(KD)||'{}')}catch(e){return {}}}
 function putd(o){try{localStorage.setItem(KD,JSON.stringify(o))}catch(e){}}
 function ev(n,p){try{if(window.gtag)gtag('event',n,p||{})}catch(e){}}
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('a.install');if(t)ev('install_click')},true); // 1115 사용자: '앱으로 설치' 누름도 방문 요약에
 function score(){var s=document.querySelector('.score');if(!s)return;var all=document.querySelectorAll('.q'),d=0,ok=0;if(!all.length)return;
 for(var i=0;i<all.length;i++){if(all[i].classList.contains('done')){d++;if(all[i].classList.contains('right'))ok++}}
 s.textContent=d?(all.length+'문제 중 '+d+'문제 풀이, '+ok+'문제 정답'):(all.length+'문제');}
