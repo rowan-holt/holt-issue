@@ -90,6 +90,22 @@ a{color:inherit;text-decoration:none}
 .nt.exam{background:var(--soft);padding:16px 20px}.nt .eq{font-weight:600}
 .nt details{margin-top:8px}.nt summary{cursor:pointer;font-size:14px;color:var(--ink2);display:inline-block;border-bottom:1px solid var(--ink2);line-height:1.4;list-style:none}
 .nt summary::-webkit-details-marker{display:none}
+/* ECON 101 — 목차·계산 문제 */
+.ep-band{display:flex;gap:10px;align-items:baseline;margin:24px 0 0;font-size:14px;color:var(--gray)}.ep-band b{font-family:"Jost",sans-serif;font-weight:600;color:var(--ink);letter-spacing:.04em}
+.etoc h2{margin:40px 0 0;padding-bottom:8px;border-bottom:1px solid var(--line);font-size:18px}
+.etoc ol{list-style:none;margin:0;padding:0}.etoc li{border-bottom:1px solid #ddd;display:flex;gap:14px;align-items:baseline;padding:14px 4px}
+.etoc .no{font-family:"Jost",sans-serif;font-size:18px;color:var(--gray);min-width:28px}
+.etoc li a{font-weight:600}.etoc li a:hover{text-decoration:underline;text-underline-offset:4px}.etoc li.off{color:#8a8a8a}.etoc li .st{margin-left:auto;font-size:13px;color:var(--gray);white-space:nowrap}
+.calc-q{border-bottom:1px solid #ddd;padding:26px 0 24px}
+.calc-q .meta{margin:0 0 6px;font-size:13px;color:var(--gray)}.calc-q h3{margin:0 0 14px;font-size:clamp(18px,1.6vw,21px);font-weight:600;line-height:1.55}
+.cin{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.cin input{font:inherit;font-size:18px;width:200px;max-width:60vw;padding:9px 12px;border:1px solid #bbb;text-align:right}
+.cin input:focus{border-color:var(--ink);outline:none}.cin .u{font-size:16px}
+.cin button{font:inherit;font-size:15px;padding:9px 18px;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
+.cres{margin:12px 0 0;font-weight:700}.cres.ok{color:var(--ok)}.cres.no{color:var(--no)}
+.steps{margin:10px 0 0;padding-left:22px}.steps li{margin:4px 0;line-height:1.65}
+.calc-q details{margin-top:12px}.calc-q summary{cursor:pointer;font-size:14px;color:var(--ink2);display:inline-block;border-bottom:1px solid var(--ink2);line-height:1.4;list-style:none}
+.calc-q summary::-webkit-details-marker{display:none}
 /* 용어집 */
 .gnav{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 0}.gnav a{border:1px solid var(--ink);padding:2px 10px;font-size:14px}.gnav a:hover{background:var(--ink);color:#fff}
 .gl{margin:0}.gl>div{border-bottom:1px solid #ddd;padding:16px 0}.gl dt{font-weight:700;font-size:18px}.gl dd{margin:4px 0 0;line-height:1.65}
@@ -114,6 +130,26 @@ footer.site .c{text-align:right;align-self:end}footer.site .c .install{margin:0 
 @media(max-width:700px){footer.site{grid-template-columns:1fr;padding:32px 20px 40px}footer.site .c{text-align:left}.top{grid-template-columns:auto 1fr;padding:6px 16px}.top>span{display:none}.top .logo{align-items:center;justify-self:start;gap:1px}.top .right{flex-direction:column;gap:0;align-items:flex-end;font-size:13px;line-height:1.6}.logo .tag{font-size:.36em;letter-spacing:.12em}
 .menu{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.menu::-webkit-scrollbar{display:none}.menu a{padding:11px 16px;font-size:14px}.menu .end{position:sticky;right:0;background:var(--bg)}.menu .end.on{background:var(--ink)}
 .head{padding:28px 16px 12px}.wrap{padding:0 16px 30px}.issue .sum{padding:14px 16px}.list a{flex-direction:column;gap:2px}.toc a{grid-template-columns:28px 1fr;padding:18px 0}.toc .n{font-size:19px}.toc .c{grid-column:2;grid-row:auto}.nt.key,.nt.exam{padding:14px 16px}.prog{padding:12px 14px}}
+.egf{margin:18px 0 26px}.egf h3{margin:0 0 8px;font-size:17px;font-weight:700}
+.eg{width:100%;height:auto;display:block;border:1px solid #ddd;background:#fff;font-family:var(--sans)}
+.eg-ax{stroke:#111;stroke-width:1.6}.eg-tk{stroke:#111;stroke-width:1.2}.eg-ahd{fill:#111}.eg-ahr{fill:#c0392b}
+.eg-tl{font-size:14px;fill:#555}.eg-xl,.eg-yl{font-size:15px;fill:#111;font-weight:600}
+.eg-ln{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.eg-ln.dash{stroke-dasharray:7 6;stroke-width:2.2}
+.eg-ln.t-ink{stroke:#111}.eg-ln.t-blue{stroke:#1f5fbf}.eg-ln.t-red{stroke:#c0392b}
+.eg-ll{font-size:15px;font-weight:700}.eg-ll.t-ink{fill:#111}.eg-ll.t-blue{fill:#1f5fbf}.eg-ll.t-red{fill:#c0392b}
+.eg-area{stroke:none}.eg-area.t-blue{fill:#1f5fbf;fill-opacity:.14}.eg-area.t-red{fill:#c0392b;fill-opacity:.14}.eg-area.t-gray{fill:#111;fill-opacity:.08}
+.eg-al{font-size:14px;fill:#333;font-weight:600}
+.eg-gd{fill:none;stroke:#888;stroke-width:1.3;stroke-dasharray:4 4}
+.eg-pt{stroke:#fff;stroke-width:2}.eg-pt.t-ink{fill:#111}.eg-pt.t-red{fill:#c0392b}.eg-pt.t-blue{fill:#1f5fbf}
+.eg-pl{font-size:16px;font-weight:700;fill:#111}
+.eg-arw{stroke-width:2.2}.eg-arw.t-red{stroke:#c0392b}.eg-arw.t-ink,.eg-arw.t-blue{stroke:#111}
+.eg-nt{font-size:14px;fill:#333}.eg-nt.t-red{fill:#c0392b;font-weight:600}
+.egf .cap{margin:8px 0 0;font-size:15px;color:var(--ink2);line-height:1.7}
+@media (prefers-reduced-motion:no-preference){.eg.anim .draw{stroke-dasharray:1;stroke-dashoffset:1}.eg.anim.on .draw{animation:egd 1.1s ease-out var(--dl,0s) forwards}
+.eg.anim .eg-pt,.eg.anim .eg-pl,.eg.anim .eg-arw,.eg.anim .eg-nt,.eg.anim .eg-gd,.eg.anim .eg-area,.eg.anim .eg-al{opacity:0}.eg.anim.on .eg-pt,.eg.anim.on .eg-pl,.eg.anim.on .eg-arw,.eg.anim.on .eg-nt,.eg.anim.on .eg-gd,.eg.anim.on .eg-area,.eg.anim.on .eg-al{animation:egf .5s ease-out 1.1s forwards}}
+@keyframes egd{to{stroke-dashoffset:0}}@keyframes egf{to{opacity:1}}
+@media(max-width:700px){.eg-tl{font-size:21px}.eg-xl,.eg-yl{font-size:22px}.eg-ll{font-size:21px}.eg-pl{font-size:24px}.eg-nt,.eg-al{font-size:19px}.eg-ln{stroke-width:4}.eg-pt{r:8px}}
 .psa{position:relative;margin:0;color:#fff;overflow:hidden}
 .psa a{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;padding:20px 24px;color:#fff!important;text-decoration:none;background:none!important;border:0!important}
 .psa .psa-l{position:absolute;top:0;right:0;margin:0;padding:2px 6px;font-size:9px;line-height:1.4;letter-spacing:.04em;font-weight:400;color:#fff;background:rgba(0,0,0,.35);pointer-events:none}
