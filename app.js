@@ -34,14 +34,15 @@ out.textContent=ok?'정답이에요. 풀이로 계산 순서를 확인해 보세
 if(window.a11ySay)a11ySay(out.textContent);ev('calc_answer',{qid:id,correct:ok?1:0});
 if(ok){c.classList.add('done','right');var d=c.querySelector('details');if(d)d.open=true;var dd=getd();dd[id]=1;dd._d=dd._d||{};dd._d[kst(0)]=1;putd(dd)}}
 bt.addEventListener('click',go);inp.addEventListener('keydown',function(x){if(x.key==='Enter')go()})})(cq[i]);
-/* 진도 띠 — 오답 문제 수, 연속 학습일 */
+/* 진도 띠 — 오답 문제 수, 공부한 날 수 */
 function kst(o){var d=new Date(Date.now()+9*3600e3-(o||0)*864e5);return d.toISOString().slice(0,10)}
 var pg=document.querySelector('.prog');if(pg){(function(){var dn=getd(),nw=Object.keys(get()).length;
 var bb=pg.querySelector('.pg-bar');if(bb)bb.hidden=true;pg.querySelector('.pg-t').textContent=pg.getAttribute('data-l')+' '+nw+'문제';
-var days=dn._d||{},st=0;for(var o=(days[kst(0)]?0:1);days[kst(o)];o++)st++;var wr=Object.keys(get()).length;
+/* 1115 사용자: 오답 노트에 들어오기만 해도 그날이 하루로 세어짐 — 끊겨도 처음부터 다시 세지 않음 */
+var days=dn._d=dn._d||{};if(!days[kst(0)]){days[kst(0)]=1;putd(dn)}var st=Object.keys(days).length;
 var sp=pg.querySelector('.pg-s');function add(t,h){var x=document.createElement(h?'a':'span');x.textContent=t;if(h)x.href=h;sp.appendChild(x)}
 var up=(location.pathname.match(/\/(d|i|m)\/[^\/]*$/)?'../':'');
-add('연속 '+st+'일');})()}
+add('공부 시작한 지 '+st+'일째');})()}
 /* 용어집 — 그 용어가 나온 이슈를 다 풀었으면 ✓ */
 var gl=document.querySelectorAll('.gl [data-q]'),dg=getd();for(var i2=0;i2<gl.length;i2++){var ok2=gl[i2].getAttribute('data-q').split('|').some(function(s){return s.split(' ').every(function(q){return dg[q]})});
 if(ok2)gl[i2].querySelector('.lr').textContent='✓ 관련 문제를 다 풀었어요'}
