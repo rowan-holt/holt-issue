@@ -46,12 +46,16 @@ add('익힌 용어 '+n+'개',up+'glossary.html');add('오답 노트 '+wr+'문제
 /* 용어집 — 그 용어가 나온 이슈를 다 풀었으면 ✓ */
 var gl=document.querySelectorAll('.gl [data-q]'),dg=getd();for(var i2=0;i2<gl.length;i2++){var ok2=gl[i2].getAttribute('data-q').split('|').some(function(s){return s.split(' ').every(function(q){return dg[q]})});
 if(ok2)gl[i2].querySelector('.lr').textContent='✓ 관련 문제를 다 풀었어요'}
-/* 용어집 분야 칸 — 고른 분야 용어만, 빈 자음 묶음은 숨김 */
-var fb=document.querySelectorAll('.fnav button');for(var f1=0;f1<fb.length;f1++)fb[f1].addEventListener('click',function(){var f=this.getAttribute('data-f');
-for(var a=0;a<fb.length;a++){var on=fb[a]===this;fb[a].classList.toggle('on',on);fb[a].setAttribute('aria-pressed',on?'true':'false')}
-var ds=document.querySelectorAll('.gl>div');for(var b=0;b<ds.length;b++)ds[b].hidden=!!f&&(' '+ds[b].getAttribute('data-f')+' ').indexOf(' '+f+' ')<0;
-var hs=document.querySelectorAll('h2.sec[id^="g"]');for(var c=0;c<hs.length;c++){var dl=hs[c].nextElementSibling,any=dl&&dl.querySelector('div:not([hidden])');
-hs[c].hidden=dl.hidden=!any;var ln=document.querySelector('.gnav a[href="#'+hs[c].id+'"]');if(ln)ln.hidden=!any}});
+/* 용어집 — 분야 칸과 첫 글자 칸: 고른 것만 남김. 첫 글자는 다시 누르면 풀림, 고른 분야에 없는 글자는 흐리게 */
+var fb=document.querySelectorAll('.fnav button'),gb2=document.querySelectorAll('.gnav button'),selF='',selG='';
+function gfil(){var ds=document.querySelectorAll('.gl>div');for(var b=0;b<ds.length;b++)ds[b].hidden=!!selF&&(' '+ds[b].getAttribute('data-f')+' ').indexOf(' '+selF+' ')<0;
+var hs=document.querySelectorAll('h2.sec[id^="g"]');for(var c=0;c<hs.length;c++){var dl=hs[c].nextElementSibling,any=!!(dl&&dl.querySelector('div:not([hidden])'));
+var bt=document.querySelector('.gnav button[data-g="'+hs[c].id+'"]');if(bt){bt.disabled=!any;if(!any&&selG===hs[c].id)selG=''}
+var show=any&&(!selG||selG===hs[c].id);hs[c].hidden=dl.hidden=!show}
+for(var g=0;g<gb2.length;g++){var on=gb2[g].getAttribute('data-g')===selG;gb2[g].classList.toggle('on',on);gb2[g].setAttribute('aria-pressed',on?'true':'false')}}
+for(var f1=0;f1<fb.length;f1++)fb[f1].addEventListener('click',function(){selF=this.getAttribute('data-f');
+for(var a=0;a<fb.length;a++){var on=fb[a]===this;fb[a].classList.toggle('on',on);fb[a].setAttribute('aria-pressed',on?'true':'false')}gfil()});
+for(var g1=0;g1<gb2.length;g1++)gb2[g1].addEventListener('click',function(){var g=this.getAttribute('data-g');selG=selG===g?'':g;gfil()});
 /* 이슈 제목 목록 — 이 기기에서 푼 문제 수 */
 var tc=document.querySelectorAll('.toc [data-q]'),dn=getd();for(i=0;i<tc.length;i++){var ids=tc[i].getAttribute('data-q').split(' '),k=0;
 for(var j=0;j<ids.length;j++)if(dn[ids[j]])k++;var c=tc[i].querySelector('.c');if(!c||!k)continue;
@@ -79,7 +83,14 @@ var a=document.createElement('p');a.className='ans';var t='정답 '+'①②③�
 var w=document.createElement('p');w.textContent=q.why;d.appendChild(w);
 var l=document.createElement('a');l.className='src';l.href=q.url;l.target='_blank';l.rel='noopener';l.textContent='기사 자세히 보기: '+q.st+' ↗';d.appendChild(l);
 if(q.ip){var ip=document.createElement('a');ip.className='src';ip.style.marginLeft='14px';ip.href=q.ip;ip.textContent='이슈 정리 다시 보기';d.appendChild(ip)}
-el.appendChild(d);box.appendChild(el);bind(el);});
+el.appendChild(d);
+/* 1115 사용자: 문제마다 오른쪽 아래 휴지통 — 누르면 오답 노트에서 빠짐 */
+var del=document.createElement('button');del.type='button';del.className='del';del.setAttribute('aria-label','이 문제를 오답 노트에서 빼기');del.title='오답 노트에서 빼기';
+var NS='http://www.w3.org/2000/svg',sv=document.createElementNS(NS,'svg');sv.setAttribute('viewBox','0 0 24 24');sv.setAttribute('aria-hidden','true');
+['M4 7h16','M10 11v6','M14 11v6','M6 7l1 13h10l1-13','M9 7V4h6v3'].forEach(function(dd){var pa=document.createElementNS(NS,'path');pa.setAttribute('d',dd);sv.appendChild(pa)});
+del.appendChild(sv);del.addEventListener('click',function(){var o=get();delete o[id];put(o);el.parentNode.removeChild(el);var left=document.querySelectorAll('#notes .q').length;
+var sc2=document.querySelector('.score');if(sc2)sc2.textContent=left?left+'문제':'';if(!left){box.innerHTML='<p class="empty">틀린 문제가 아직 없어요. 문제를 풀다 틀리면 여기에 모여요.</p>';if(clr)clr.hidden=true}ev('note_remove',{qid:id})});
+el.appendChild(del);box.appendChild(el);bind(el);});
 var sc=document.querySelector('.score');if(sc)sc.textContent=ids.length+'문제';
 });
 if(clr)clr.addEventListener('click',function(){if(confirm('오답 노트를 비울까요?')){put({});location.reload()}});
