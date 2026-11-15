@@ -14,9 +14,10 @@ function bind(q){var bs=q.querySelectorAll('.ch button'),ans=+q.getAttribute('da
 for(var i=0;i<bs.length;i++)(function(b,i){b.addEventListener('click',function(){
 if(q.classList.contains('done'))return;q.classList.add('done');var right=(i===ans);q.classList.add(right?'right':'wrong');
 bs[ans].classList.add('ok');if(!right)b.classList.add('no');
-var a=q.querySelector('.ex .ans');if(a){a.classList.add(right?'ok':'no');a.textContent=(right?'정답이에요. ':'틀렸어요. ')+a.getAttribute('data-t')}
+var a=q.querySelector('.ex .ans');if(a){a.classList.add(right?'ok':'no');a.textContent=right?'정답이에요. '+a.getAttribute('data-t'):'틀렸어요. 고른 답 '+'①②③④'.charAt(i)+', '+a.getAttribute('data-t')}
 bs[ans].insertAdjacentHTML('beforeend','<span class="vh"> (정답)</span>');if(!right)b.insertAdjacentHTML('beforeend','<span class="vh"> (고른 답, 오답)</span>');for(var j=0;j<bs.length;j++)bs[j].setAttribute('aria-disabled','true');if(window.a11ySay)a11ySay((right?'정답이에요. ':'틀렸어요. ')+(a?a.getAttribute('data-t'):'')+'. 해설이 펼쳐졌어요.');
 var d=q.querySelector('.ex');if(d)d.open=true;
+if(!right&&d&&!document.getElementById('notes')){var up=location.pathname.split('/').length>2?'../':'',nt=document.createElement('p');nt.className='to-notes';nt.appendChild(document.createTextNode('이 문제는 오답 노트에 담았어요. '));var na=document.createElement('a');na.href=up+'notes.html';na.textContent='오답 노트 보기';nt.appendChild(na);d.appendChild(nt)}
 var dd=getd();dd[id]=1;dd._d=dd._d||{};dd._d[kst(0)]=1;putd(dd);var s=get();if(right){if(s[id])delete s[id]}else{s[id]={c:i,t:Date.now()}}put(s);
 ev('quiz_answer',{qid:id,correct:right?1:0});score();});})(bs[i],i);}
 var qs=document.querySelectorAll('.q');for(var i=0;i<qs.length;i++)bind(qs[i]);score();
@@ -41,10 +42,10 @@ var days=dn._d||{},st=0;for(var o=(days[kst(0)]?0:1);days[kst(o)];o++)st++;var w
 var sp=pg.querySelector('.pg-s');function add(t,h){var x=document.createElement(h?'a':'span');x.textContent=t;if(h)x.href=h;sp.appendChild(x)}
 var up=(location.pathname.match(/\/(d|i|m)\/[^\/]*$/)?'../':'');
 add('연속 '+st+'일');fetch(up+'g.json').then(function(r){return r.json()}).then(function(g){var n=0;g.forEach(function(t){if(t[1].some(function(s){return s.every(function(q){return dn[q]})}))n++});
-add('익힌 용어 '+n+'개',up+'glossary.html');if(wr)add('복습할 문제 '+wr+'개',up+'notes.html')}).catch(function(){if(wr)add('복습할 문제 '+wr+'개',up+'notes.html')});})()}
+add('익힌 용어 '+n+'개',up+'glossary.html');add('오답 노트 '+wr+'문제')}).catch(function(){add('오답 노트 '+wr+'문제')});})()}
 /* 용어집 — 그 용어가 나온 이슈를 다 풀었으면 ✓ */
 var gl=document.querySelectorAll('.gl [data-q]'),dg=getd();for(var i2=0;i2<gl.length;i2++){var ok2=gl[i2].getAttribute('data-q').split('|').some(function(s){return s.split(' ').every(function(q){return dg[q]})});
-if(ok2)gl[i2].querySelector('.lr').textContent='✓ 익힘'}
+if(ok2)gl[i2].querySelector('.lr').textContent='✓ 관련 문제를 다 풀었어요'}
 /* 용어집 분야 칸 — 고른 분야 용어만, 빈 자음 묶음은 숨김 */
 var fb=document.querySelectorAll('.fnav button');for(var f1=0;f1<fb.length;f1++)fb[f1].addEventListener('click',function(){var f=this.getAttribute('data-f');
 for(var a=0;a<fb.length;a++){var on=fb[a]===this;fb[a].classList.toggle('on',on);fb[a].setAttribute('aria-pressed',on?'true':'false')}
@@ -55,6 +56,7 @@ hs[c].hidden=dl.hidden=!any;var ln=document.querySelector('.gnav a[href="#'+hs[c
 var tc=document.querySelectorAll('.toc [data-q]'),dn=getd();for(i=0;i<tc.length;i++){var ids=tc[i].getAttribute('data-q').split(' '),k=0;
 for(var j=0;j<ids.length;j++)if(dn[ids[j]])k++;var c=tc[i].querySelector('.c');if(!c||!k)continue;
 if(k===ids.length){c.textContent='✓ 다 풀었어요';c.classList.add('all')}else c.textContent=ids.length+'문제 중 '+k+'문제 풀이'}
+var gb=document.querySelectorAll('.goback');for(i=0;i<gb.length;i++)gb[i].addEventListener('click',function(){if(history.length>1&&document.referrer)history.back();else location.href=this.getAttribute('data-to')});
 var src=document.querySelectorAll('.ex .src');for(i=0;i<src.length;i++)src[i].addEventListener('click',function(){ev('to_news',{url:this.href})});
 /* 오답 노트 — 같은 사이트 q.json에서 틀린 문제만 다시 그림 (textContent만 씀) */
 var box=document.getElementById('notes');if(!box)return;
