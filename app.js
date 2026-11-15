@@ -16,9 +16,21 @@ bs[ans].classList.add('ok');if(!right)b.classList.add('no');
 var a=q.querySelector('.ex .ans');if(a){a.classList.add(right?'ok':'no');a.textContent=(right?'정답이에요. ':'틀렸어요. ')+a.getAttribute('data-t')}
 bs[ans].insertAdjacentHTML('beforeend','<span class="vh"> (정답)</span>');if(!right)b.insertAdjacentHTML('beforeend','<span class="vh"> (고른 답, 오답)</span>');for(var j=0;j<bs.length;j++)bs[j].setAttribute('aria-disabled','true');if(window.a11ySay)a11ySay((right?'정답이에요. ':'틀렸어요. ')+(a?a.getAttribute('data-t'):'')+'. 해설이 펼쳐졌어요.');
 var d=q.querySelector('.ex');if(d)d.open=true;
-var dd=getd();dd[id]=1;putd(dd);var s=get();if(right){if(s[id])delete s[id]}else{s[id]={c:i,t:Date.now()}}put(s);
+var dd=getd();dd[id]=1;dd._d=dd._d||{};dd._d[kst(0)]=1;putd(dd);var s=get();if(right){if(s[id])delete s[id]}else{s[id]={c:i,t:Date.now()}}put(s);
 ev('quiz_answer',{qid:id,correct:right?1:0});score();});})(bs[i],i);}
 var qs=document.querySelectorAll('.q');for(var i=0;i<qs.length;i++)bind(qs[i]);score();
+/* 진도 띠 — 오늘 n/m, 연속 학습일, 익힌 용어, 복습할 문제 */
+function kst(o){var d=new Date(Date.now()+9*3600e3-(o||0)*864e5);return d.toISOString().slice(0,10)}
+var pg=document.querySelector('.prog');if(pg){(function(){var ids=pg.getAttribute('data-q').split(' '),dn=getd(),k=0;for(var j=0;j<ids.length;j++)if(dn[ids[j]])k++;
+var bar=pg.querySelector('.pg-bar i');if(bar)bar.style.width=Math.round(100*k/ids.length)+'%';pg.querySelector('.pg-t').textContent=pg.getAttribute('data-l')+' '+ids.length+'문제 중 '+k+'문제';
+var days=dn._d||{},st=0;for(var o=(days[kst(0)]?0:1);days[kst(o)];o++)st++;var wr=Object.keys(get()).length;
+var sp=pg.querySelector('.pg-s');function add(t,h){var x=document.createElement(h?'a':'span');x.textContent=t;if(h)x.href=h;sp.appendChild(x)}
+var up=(location.pathname.match(/\/(d|i|m)\/[^\/]*$/)?'../':'');
+add('연속 '+st+'일');fetch(up+'g.json').then(function(r){return r.json()}).then(function(g){var n=0;g.forEach(function(t){if(t[1].some(function(s){return s.every(function(q){return dn[q]})}))n++});
+add('익힌 용어 '+n+'개',up+'glossary.html');if(wr)add('복습할 문제 '+wr+'개',up+'notes.html')}).catch(function(){if(wr)add('복습할 문제 '+wr+'개',up+'notes.html')});})()}
+/* 용어집 — 그 용어가 나온 이슈를 다 풀었으면 ✓ */
+var gl=document.querySelectorAll('.gl [data-q]'),dg=getd();for(var i2=0;i2<gl.length;i2++){var ok2=gl[i2].getAttribute('data-q').split('|').some(function(s){return s.split(' ').every(function(q){return dg[q]})});
+if(ok2)gl[i2].querySelector('.lr').textContent='✓ 익힘'}
 /* 이슈 제목 목록 — 이 기기에서 푼 문제 수 */
 var tc=document.querySelectorAll('.toc [data-q]'),dn=getd();for(i=0;i<tc.length;i++){var ids=tc[i].getAttribute('data-q').split(' '),k=0;
 for(var j=0;j<ids.length;j++)if(dn[ids[j]])k++;var c=tc[i].querySelector('.c');if(!c||!k)continue;
