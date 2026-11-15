@@ -42,7 +42,7 @@ var bb=pg.querySelector('.pg-bar');if(bb)bb.hidden=true;pg.querySelector('.pg-t'
 var days=dn._d=dn._d||{};if(!days[kst(0)]){days[kst(0)]=1;putd(dn)}var st=Object.keys(days).length;
 var sp=pg.querySelector('.pg-s');function add(t,h){var x=document.createElement(h?'a':'span');x.textContent=t;if(h)x.href=h;sp.appendChild(x)}
 var up=(location.pathname.match(/\/(d|i|m)\/[^\/]*$/)?'../':'');
-add('공부 시작한 지 '+st+'일째');})()}
+add('공부한 날 '+st+'일');})()}
 /* 용어집 — 그 용어가 나온 이슈를 다 풀었으면 ✓ */
 var gl=document.querySelectorAll('.gl [data-q]'),dg=getd();for(var i2=0;i2<gl.length;i2++){var ok2=gl[i2].getAttribute('data-q').split('|').some(function(s){return s.split(' ').every(function(q){return dg[q]})});
 if(ok2)gl[i2].querySelector('.lr').textContent='✓ 관련 문제를 다 풀었어요'}
