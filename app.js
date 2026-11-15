@@ -45,6 +45,12 @@ add('익힌 용어 '+n+'개',up+'glossary.html');if(wr)add('복습할 문제 '+w
 /* 용어집 — 그 용어가 나온 이슈를 다 풀었으면 ✓ */
 var gl=document.querySelectorAll('.gl [data-q]'),dg=getd();for(var i2=0;i2<gl.length;i2++){var ok2=gl[i2].getAttribute('data-q').split('|').some(function(s){return s.split(' ').every(function(q){return dg[q]})});
 if(ok2)gl[i2].querySelector('.lr').textContent='✓ 익힘'}
+/* 용어집 분야 칸 — 고른 분야 용어만, 빈 자음 묶음은 숨김 */
+var fb=document.querySelectorAll('.fnav button');for(var f1=0;f1<fb.length;f1++)fb[f1].addEventListener('click',function(){var f=this.getAttribute('data-f');
+for(var a=0;a<fb.length;a++){var on=fb[a]===this;fb[a].classList.toggle('on',on);fb[a].setAttribute('aria-pressed',on?'true':'false')}
+var ds=document.querySelectorAll('.gl>div');for(var b=0;b<ds.length;b++)ds[b].hidden=!!f&&(' '+ds[b].getAttribute('data-f')+' ').indexOf(' '+f+' ')<0;
+var hs=document.querySelectorAll('h2.sec[id^="g"]');for(var c=0;c<hs.length;c++){var dl=hs[c].nextElementSibling,any=dl&&dl.querySelector('div:not([hidden])');
+hs[c].hidden=dl.hidden=!any;var ln=document.querySelector('.gnav a[href="#'+hs[c].id+'"]');if(ln)ln.hidden=!any}});
 /* 이슈 제목 목록 — 이 기기에서 푼 문제 수 */
 var tc=document.querySelectorAll('.toc [data-q]'),dn=getd();for(i=0;i<tc.length;i++){var ids=tc[i].getAttribute('data-q').split(' '),k=0;
 for(var j=0;j<ids.length;j++)if(dn[ids[j]])k++;var c=tc[i].querySelector('.c');if(!c||!k)continue;

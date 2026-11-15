@@ -107,6 +107,8 @@ a{color:inherit;text-decoration:none}
 .calc-q details{margin-top:12px}.calc-q summary{cursor:pointer;font-size:14px;color:var(--ink2);display:inline-block;border-bottom:1px solid var(--ink2);line-height:1.4;list-style:none}
 .calc-q summary::-webkit-details-marker{display:none}
 /* 용어집 */
+[hidden]{display:none!important}
+.fnav{display:flex;flex-wrap:wrap;gap:6px;margin:24px 0 0}.fnav button{font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid #bbb;padding:5px 12px;cursor:pointer;line-height:1.4}.fnav button:hover{border-color:var(--ink)}.fnav button.on{background:var(--ink);border-color:var(--ink);color:#fff}
 .gnav{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 0}.gnav a{border:1px solid var(--ink);padding:2px 10px;font-size:14px}.gnav a:hover{background:var(--ink);color:#fff}
 .gl{margin:0}.gl>div{border-bottom:1px solid #ddd;padding:16px 0}.gl dt{font-weight:700;font-size:18px}.gl dd{margin:4px 0 0;line-height:1.65}
 .gl .lr{margin-left:8px;font-size:13px;color:var(--ok);font-weight:600}
